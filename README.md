@@ -1,4 +1,4 @@
-#TS-Benchmark:
+# TS-Benchmark:
 ## An automated benchmarking tool for time series forecasting techniques
 
 
@@ -6,14 +6,14 @@
 This File explains how to set up, extend and operate the Benchmarking Framework.
 
 
-##Manual Configurations
+## Manual Configurations
 In this section, the dependencies of the project and manual configurations are described
 
-##java dependencies
+## java dependencies
 
 the maven dependencies are specified in the pom.xml file. Furthermore, the included external libraries are provided as .jar files in the JAR folder
 
-###python source files
+### python source files
 
 The benchmark uses several forecasting models provided by the [DARTS](https://unit8co.github.io/darts/) API. The python API is called from the command line within the java benchmarking source code.
 For this, the python interpreter path has to be specified.
@@ -30,7 +30,7 @@ The following packages need to be installed to the interpreter:
 -pandas
 -sklearn
 
-###R source files
+### R source files
 
 The same procedure has been applied for integrating the Prophet model.
 the interpretepath variable in the Prophet class has to be set to the local R interpreter.
@@ -75,7 +75,7 @@ Vary_Dimension: evaluates the forecasting error repeatedly while increasing the 
 
 The results of the experiments are written to the Outputs directory and are stored as TSModel.Output and TSModel.Vary_Result objects.
 
-###Adding custom Tests
+### Adding custom Tests
 To add custom tests to the framework a new class has to be created which extends the Aplication.Test class.
 This requires the implementation of the test() and file_ending() functions.
 the test() function specifies the procedure performed for each time series and method.
@@ -94,7 +94,7 @@ The benchmark requires forecasting techniques to extend the TSModel class. The B
 A standard use case of the Aplication is demonstrated in the main function of the Examples class.
 
 
-###The evaluate() function
+### The evaluate() function
 The TSModel class requires the implementation of the evaluate() function.
 When this function is called the forecasting method is expected to produce its forecast for a provided test and training set.
 The test and training set is stored in a private Output object called o.
@@ -103,7 +103,7 @@ The test set is stored in the private field Output.test.
 The forecasting method is expected to set the private field Output.forecast of o to its produced forecast and to set o to the return value of evaluate. The forecast is required to have the same dimensions as the test set.
 All three Objects are represented by Matrices, where the row dimension refers to the dimension of the time series and the column dimension to its length.
 
-###The parse() function  
+### The parse() function  
 
 The parse() function is used to provide the method with its hyperparameter settings. the method is passed a Hashmap object, which maps the specified parameter names to their values.
 The method has to parse this object and initialize its hyperparameter settings. Refer to one of the provided Method classes for an example of the implementation of this method.
