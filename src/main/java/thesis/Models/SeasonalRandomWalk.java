@@ -1,0 +1,60 @@
+package thesis.Models;
+
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
+import thesis.TSModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class SeasonalRandomWalk extends TSModel {
+    int period;
+    @Override
+    protected void parse(HashMap<String, ArrayList<String>> in) {
+        period = in.containsKey("-period") ? new Double(in.get("-period").get(0)).intValue() : 1;
+    }
+    public SeasonalRandomWalk(){
+        period = 1;
+    }
+    public SeasonalRandomWalk(int period){
+        this.period = period;
+    }
+
+    @Override
+    protected TSModel.Output evaluate() {
+        RealMatrix last = o.getTrain().getSubMatrix(0,o.getTrain().getRowDimension()-1,o.getTrain().getColumnDimension()-period,o.getTrain().getColumnDimension()-1);
+
+        RealMatrix forecast = MatrixUtils.createRealMatrix(o.getTest().getRowDimension(),o.getTest().getColumnDimension());
+        for(int i = 0; i<forecast.getColumnDimension();i++) {
+            forecast.setColumnVector(i,last.getColumnVector(i%last.getColumnDimension()));
+        }
+        o.setForecast(forecast);
+        return o;
+    }
+
+    @Override
+    public boolean is1D() {
+        return true;
+    }
+
+    @Override
+    public boolean isND() {
+        return true;
+    }
+
+    @Override
+    public boolean missingValuesAllowed() {
+        return false;
+    }
+
+    @Override
+    public HashMap<String, String[]> getSearchSpace() {
+        return null;
+    }
+
+    @Override
+    public boolean legal_hyperparameters(RealMatrix train) {
+        return true;
+    }
+}
