@@ -9,26 +9,23 @@ This File explains how to set up, extend and operate the Benchmarking Framework.
 ## Manual Configurations
 In this section, the dependencies of the project and manual configurations are described
 
-## java dependencies
+### java dependencies
 
 the maven dependencies are specified in the pom.xml file. Furthermore, the included external libraries are provided as .jar files in the JAR folder
 
 ### python source files
-
+The source files of the used python scripts are situated in the Scripts/Python directory.
 The benchmark uses several forecasting models provided by the [DARTS](https://unit8co.github.io/darts/) API. The python API is called from the command line within the java benchmarking source code.
 For this, the python interpreter path has to be specified.
 The interpreter path is hardcoded in a static final variable called interpreterpath in the source code of the DartsModel class. To use the methods from the darts API this variable has to be set to the local interpreter path.
-
 The same procedure is used for the ME forecasting model and therefore its interpreterpath variable also has to be set accordingly in its class.
-
-The source files of the used python scripts are situated in the Scripts/Python directory.
 
 The following packages need to be installed to the interpreter:
 
--numpy
--darts
--pandas
--sklearn
+* numpy
+* darts
+* pandas
+* sklearn
 
 ### R source files
 
