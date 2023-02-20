@@ -1,5 +1,5 @@
 # TS-Benchmark:
-## An automated benchmarking tool for time series forecasting techniques
+An automated benchmarking tool for time series forecasting techniques
 
 
 
@@ -17,8 +17,8 @@ the maven dependencies are specified in the pom.xml file. Furthermore, the inclu
 The source files of the used python scripts are situated in the Scripts/Python directory.
 The benchmark uses several forecasting models provided by the [DARTS](https://unit8co.github.io/darts/) API. The python API is called from the command line within the java benchmarking source code.
 For this, the python interpreter path has to be specified.
-The interpreter path is hardcoded in a static final variable called interpreterpath in the source code of the DartsModel class. To use the methods from the darts API this variable has to be set to the local interpreter path.
-The same procedure is used for the ME forecasting model and therefore its interpreterpath variable also has to be set accordingly in its class.
+The interpreter path is hardcoded in a static final variable called interpreterpath in the source code of the src\main\java\thesis\Models\DartsModel class. To use the methods from the darts API this variable has to be set to the local interpreter path.
+The same procedure is used for the ME forecasting model and therefore its interpreterpath variable also has to be set accordingly in its class src\main\java\thesis\Models\ME.
 
 The following packages need to be installed to the interpreter:
 
@@ -30,7 +30,7 @@ The following packages need to be installed to the interpreter:
 ### R source files
 
 The same procedure has been applied for integrating the Prophet model.
-the interpretepath variable in the Prophet class has to be set to the local R interpreter.
+the interpretepath variable in the src\main\java\thesis\Models\Prophet class has to be set to the local R interpreter.
 
 The source files for the R scripts are provided in the directory Scripts/R
 
@@ -43,9 +43,7 @@ The .exe files (compiled to windows) and the source files are provided in the Sc
 
 ## How to setup and customize the benchmarking environment
 
-the java source code for the benchmarking framework is situated in the src/main/java repository.
-
-The Aplication class defines the frame for customizing, executing, and viewing the Benchmark results.
+The src\main\java\Aplication class defines the frame for customizing, executing, and viewing the Benchmark results.
 The Class follows the singleton design pattern and therefore the getInstance() method has to be called to create an instance of the benchmark.
 Helper methods are provided to customize the methods and datasets used for testing.
 
@@ -81,14 +79,13 @@ the file_ending() function is used to uniquely identify the results file generat
 ## How to view the Results of the Experiments
 
 For each Test class, a corresponding Outputter class has been provided which helps navigate and display the results of the experiment.
-An example of how to plot the results of the Vary_Length experiment is provided in the main function of the Aplication class.
+A stabdard use case of the Aplication object is demonstarted in the main function of the src\main\java\Examples class.
 
 
 
 ## How to add custom forecasting techniques to the programming environment
 
-The benchmark requires forecasting techniques to extend the TSModel class. The Benchmark then creates and calls the method using reflection.
-A standard use case of the Aplication is demonstrated in the main function of the Examples class.
+The benchmark requires forecasting techniques to extend the src\main\java\thesis\TSModel class. The Benchmark then creates and calls the method using reflection.
 
 
 ### The evaluate() function
