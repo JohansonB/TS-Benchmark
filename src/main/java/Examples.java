@@ -1,14 +1,13 @@
-import thesis.Models.RandomWalk;
+import thesis.Aplication;
 import thesis.Models.SeasonalRandomWalk;
 import thesis.Tools.Metric;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Examples {
-    //this illustrates how to operate the benchmark using the Aplication object
+    //this illustrates how to operate the benchmark using the thesis.Aplication object
     public static void main(String[] args){
-        //create Aplication
+        //create thesis.Aplication
         Aplication a = Aplication.getInstance();
         //add new Method to the benchmark
         a.add_method(new SeasonalRandomWalk());

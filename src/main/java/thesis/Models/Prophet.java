@@ -2,6 +2,7 @@ package thesis.Models;
 
 
 import org.apache.commons.math3.linear.RealMatrix;
+import thesis.Aplication;
 import thesis.TSModel;
 import thesis.Tools.GridSearcher;
 import thesis.Tools.OutputParser;
@@ -15,7 +16,7 @@ public class Prophet extends TSModel {
     private static final String trainPath = "Scripts\\R\\Prophet\\train.csv";
     private static final String testPath = "Scripts\\R\\Prophet\\test.csv";
     private static final String outputPath = "Scripts\\R\\Prophet\\out.csv";
-    private static final String interpreterpath = "C:\\Program Files\\R\\R-4.1.0\\bin\\Rscript.exe";
+    private static final String interpreterpath = Aplication.getInstance().getR_interpreterpath();
     private static final String scriptPath = "Scripts\\R\\Prophet\\prophet2.R";
 
 

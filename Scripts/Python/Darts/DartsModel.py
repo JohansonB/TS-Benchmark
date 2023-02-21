@@ -2,6 +2,7 @@ import argparse
 import time
 
 import numpy as np
+import pandas as pd
 from darts import TimeSeries
 
 from darts.models import NBEATSModel, TCNModel, BlockRNNModel, FFT, TransformerModel, AutoARIMA, ARIMA, \
@@ -160,14 +161,17 @@ def darts():
             args.periods_TBATS = None
 
     if args.normalize:
-        minimum, maximum, s = rescale_row_wise(np.genfromtxt(train_path, delimiter=","))
+        minimum, maximum, s = rescale_row_wise(np.genfromtxt(train_path, delimiter=",").T)
+        print(minimum)
+        print(maximum)
     else:
-        s = np.genfromtxt(train_path, delimiter=",")
+        s = np.genfromtxt(train_path, delimiter=",").T
 
 
 
 
-    df = TimeSeries.from_series(s.T)
+    df = TimeSeries.from_series(s)
+
     test = TimeSeries.from_series(np.genfromtxt(test_path, delimiter=",").T)
 
     data_length = int(len(df))

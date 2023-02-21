@@ -1,5 +1,6 @@
 package thesis.Models;
 
+import org.apache.commons.math3.linear.RealMatrix;
 import thesis.Tools.GridSearcher;
 
 import java.io.IOException;
@@ -41,6 +42,12 @@ public class GBM extends DartsModel {
             lag = (int)(o.getTrain().getColumnDimension()*0.1);
             additionalArguments += " --lag "+lag;
         }
+    }
+    public boolean legal_hyperparameters(RealMatrix train){
+        if(input_chunk*train.getColumnDimension()<2*lag){
+            return false;
+        }
+        return true;
     }
 
     public String toString(){

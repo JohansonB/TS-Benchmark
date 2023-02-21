@@ -3,16 +3,17 @@ package thesis.Models;
 import org.apache.commons.math3.linear.RealMatrix;
 import thesis.TSModel;
 import thesis.Tools.*;
+import thesis.Aplication;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class DartsModel extends TSModel {
-    private final String interpreterpath = "C:\\Users\\41766\\PycharmProjects\\pythonProject1\\venv\\Scripts\\python.exe";
-    private final String scriptPathTestAccuracy = "Scripts\\Python\\Darts\\DartsModel.py";
-    private final String scriptPathTBATS = "Scripts\\Python\\Darts\\(T)BATS.py";
-    private final String scriptPathAllHorizons = "Scripts\\Python\\Darts\\DartsAllHorizon.py";
+    private static final String interpreterpath = Aplication.getInstance().getPython_interpreterpath();
+    private static final String scriptPathTestAccuracy = "Scripts\\Python\\Darts\\DartsModel.py";
+    private static final String scriptPathTBATS = "Scripts\\Python\\Darts\\(T)BATS.py";
+    private static final String scriptPathAllHorizons = "Scripts\\Python\\Darts\\DartsAllHorizon.py";
     private String pathToTs = "Scripts\\Python\\temp\\"+toString()+"_trainIn.csv";
     private String pathToTest = "Scripts\\Python\\temp\\"+toString()+"_testIn.csv";
     String additionalArguments;

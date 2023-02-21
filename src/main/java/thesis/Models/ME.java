@@ -1,6 +1,7 @@
 package thesis.Models;
 
 import org.apache.commons.math3.linear.RealMatrix;
+import thesis.Aplication;
 import thesis.TSModel;
 import thesis.Tools.*;
 
@@ -19,7 +20,7 @@ public class ME extends TSModel {
     protected String allHorizonScriptPath = "Scripts\\Python\\ME\\MEAllHorizon.py";
     private String pathToTrain = "Scripts\\Python\\ME\\train.csv";
     private String pathToTest = "Scripts\\Python\\ME\\test.csv";
-    protected static final String interpreterpath = "C:\\Users\\41766\\AppData\\Local\\Programs\\Python\\Python38\\python.exe";
+    protected static final String interpreterpath = Aplication.getInstance().getPython_interpreterpath();
     private static double defaultCompressionRate = 0.95;
     private static double defaultMNRatio = 1;
     private static int defaultN = 81;
