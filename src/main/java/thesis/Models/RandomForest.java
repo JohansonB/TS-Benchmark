@@ -54,7 +54,7 @@ public class RandomForest extends DartsModel{
 
     @Override
     public boolean legal_hyperparameters(RealMatrix train) {
-        return lag<train.getColumnDimension();
+        return input_chunk*train.getColumnDimension()<lag;
     }
 
 

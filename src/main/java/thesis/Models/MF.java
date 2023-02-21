@@ -213,6 +213,11 @@ public class MF extends TSModel {
     }
 
     @Override
+    public boolean legal_hyperparameters(RealMatrix train) {
+        return true;
+    }
+
+    @Override
     public boolean missingValuesAllowed() {
         return true;
     }

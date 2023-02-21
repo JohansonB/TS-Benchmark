@@ -4,6 +4,7 @@ package thesis.Models;
 
 import com.mathworks.matlab.types.Struct;
 import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import thesis.TSModel;
 import thesis.Tools.*;
@@ -163,6 +164,11 @@ public class ARIMA_Online extends TSModel {
     @Override
     public boolean isND() {
         return false;
+    }
+
+    @Override
+    public boolean legal_hyperparameters(RealMatrix train) {
+        return true;
     }
 
     @Override

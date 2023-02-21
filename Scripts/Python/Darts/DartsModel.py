@@ -83,7 +83,7 @@ def parse_args():
     parser.add_argument('--trend', type=str, default=None)
     parser.add_argument('--trend_poly_degree', type=int, default = 1)
     # block RNN input
-    parser.add_argument('--hidden_size', type=int, default=64)
+    parser.add_argument('--hidden_dim', type=int, default=64)
     parser.add_argument('--n_rnn_layers', type=int, default=1)
     # transformer model input
     parser.add_argument('--num_layers', type=int, default=3)
@@ -207,7 +207,7 @@ def darts():
                               pl_trainer_kwargs={"accelerator": "gpu", "gpus": -1, "auto_select_gpus": True,
                                                  "callbacks": [my_stopper]})
     if modelName == "BlockRNN":
-        forecaster = BlockRNNModel(input_chunk, output_len, hidden_size=args.hidden_size, model='LSTM',
+        forecaster = BlockRNNModel(input_chunk, output_len, hidden_dim=args.hidden_dim, model='LSTM',
                                    n_rnn_layers=args.n_rnn_layers,
                                    pl_trainer_kwargs={"accelerator": "gpu", "gpus": -1, "auto_select_gpus": True,
                                                       "callbacks": [my_stopper]})

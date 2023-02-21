@@ -44,7 +44,7 @@ public class GBM extends DartsModel {
         }
     }
     public boolean legal_hyperparameters(RealMatrix train){
-        if(input_chunk*train.getColumnDimension()<2*lag){
+        if(input_chunk*train.getColumnDimension()<lag+5){
             return false;
         }
         return true;

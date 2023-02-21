@@ -1222,6 +1222,7 @@ public class Aplication {
         app.set_interpreterpaths("C:\\Users\\41766\\PycharmProjects\\pythonProject1\\venv\\Scripts\\python.exe","C:\\Program Files\\R\\R-4.1.0\\bin\\Rscript.exe");
 
 
+        app.set_working_data_set("ATM_withdraw");
         app.remove_working_method(new GBM(),new RandomForest());
 
         app.test_datasets(new Vary_Length());

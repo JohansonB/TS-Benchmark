@@ -22,7 +22,7 @@ public class BlockRNN extends DartsModel{
     protected void parse(HashMap<String, ArrayList<String>> in) {
         update(in);
         additionalArguments = "";
-        additionalArguments +=  in.containsKey("-hidden_size") ? " --hidden_size "+new Double(in.get("-hidden_size").get(0)).intValue() : "";
+        additionalArguments +=  in.containsKey("-hidden_size") ? " --hidden_dim "+new Double(in.get("-hidden_size").get(0)).intValue() : "";
         additionalArguments +=  in.containsKey("-n_rnn_layers") ? " --n_rnn_layers "+new Double(in.get("-n_rnn_layers").get(0)).intValue() : "";
 
 
