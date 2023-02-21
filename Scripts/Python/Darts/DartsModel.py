@@ -15,8 +15,9 @@ def rescale(df):
     minimum = np.min(df)
     df = (df - minimum)
     maximum = np.max(df)
-    if(maximum==0):
+    if(not df.any()):
         df = df
+        maximum = np.nan
     else:
         df = df / maximum
 
@@ -25,7 +26,10 @@ def rescale(df):
 
 
 def inverse_rescale(df, minimum, maximum):
-    return df * maximum + minimum
+    if(math.isnan(maximum)):
+        return df
+    else:
+        return df * maximum + minimum
 
 
 def rescale_row_wise(df):
