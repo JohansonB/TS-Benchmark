@@ -10,16 +10,16 @@ In this section, the dependencies of the project and manual configurations are d
 
 ### java dependencies
 The project uses the [Apache Common Maths](https://commons.apache.org/proper/commons-math/) and [JFree Chart](https://www.jfree.org/jfreechart/) packages.
-the pom.xml file contains the dependencie for the first package. 
+the pom.xml file contains the dependencies for the first package. 
 The .jar files of both packages can also be found in the JAR folder.
 
 ### python source files
 The source files of the used python scripts are situated in the Scripts/Python directory.
 The benchmark uses several forecasting models provided by the [DARTS](https://unit8co.github.io/darts/) API. The python API is called from the command line within the java benchmarking source code.
 For this, the python interpreter path has to be specified.
-This can be done using the set_interpreterpaths() method, further specified in the section "How to setup and customize the benchmarking environment".
+This can be done using the set_interpreterpaths() method, further specified in the section "How to set up and customize the benchmarking environment".
 
-The following packages need to be installed to the enviorment of the  python interpreter:
+The following packages need to be installed to the environment of the  python interpreter:
 
 * numpy
 * darts
@@ -28,8 +28,8 @@ The following packages need to be installed to the enviorment of the  python int
 
 ### R source files
 
-the benchmark also requires the user to specify the path to a Rscript excutionable using the set_interpreterpaths() method.
-The prophet packages has to be installed to the R enviorment.
+the benchmark also requires the user to specify the path to a Rscript excutable using the set_interpreterpaths() method.
+The prophet packages have to be installed to the R environment.
 The source files for the R scripts are provided in the directory Scripts/R
 
 
@@ -45,7 +45,7 @@ The src\main\java\Aplication class defines the framework for customizing, execut
 The Class follows the singleton design pattern and therefore the getInstance() method has to be called to create an instance of the benchmark.
 Helper methods are provided to customize the methods and datasets used for testing.
 
-When creating the Aplication object for the first time, the user is required to secify the python interpreter-path and the Rscript-path using the set_interpreterpath() method.
+When creating the Aplication object for the first time, the user is required to specify the python interpreter-path and the Rscript-path using the set_interpreterpath() method.
 
 To add a new time series to the testing environment the add_time_series() function has to be called.
 The add_subseries() command allows the inclusion of a 1D-subseries of a previously added time series to the testing environment.
@@ -79,7 +79,7 @@ the file_ending() function is used to uniquely identify the results file generat
 ## How to view the Results of the Experiments
 
 For each Test class, a corresponding Outputter class has been provided which helps navigate and display the results of the experiment.
-A stabdard use case of the Aplication object is demonstarted in the main function of the src\main\java\Examples class.
+A standard use case of the Aplication object is demonstrated in the main function of the src\main\java\Examples class.
 
 
 
