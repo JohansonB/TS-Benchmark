@@ -1,5 +1,4 @@
-# TS-Benchmark:
-An automated benchmarking tool for time series forecasting techniques
+# TS-Benchmark: An automated benchmarking tool for time series forecasting techniques
 
 
 
@@ -10,17 +9,17 @@ This File explains how to set up, extend and operate the Benchmarking Framework.
 In this section, the dependencies of the project and manual configurations are described
 
 ### java dependencies
-
-the maven dependencies are specified in the pom.xml file. Furthermore, the included external libraries are provided as .jar files in the JAR folder
+The project uses the [Apache Common Maths](https://commons.apache.org/proper/commons-math/) and [JFree Chart](https://www.jfree.org/jfreechart/) packages.
+the pom.xml file contains the dependencie for the first package. 
+The .jar files of both packages can also be found in the JAR folder.
 
 ### python source files
 The source files of the used python scripts are situated in the Scripts/Python directory.
 The benchmark uses several forecasting models provided by the [DARTS](https://unit8co.github.io/darts/) API. The python API is called from the command line within the java benchmarking source code.
 For this, the python interpreter path has to be specified.
-The interpreter path is hardcoded in a static final variable called interpreterpath in the source code of the src\main\java\thesis\Models\DartsModel class. To use the methods from the darts API this variable has to be set to the local interpreter path.
-The same procedure is used for the ME forecasting model and therefore its interpreterpath variable also has to be set accordingly in its class src\main\java\thesis\Models\ME.
+This can be done using the set_interpreterpaths() method, further specified in the section "How to setup and customize the benchmarking environment".
 
-The following packages need to be installed to the interpreter:
+The following packages need to be installed to the enviorment of the  python interpreter:
 
 * numpy
 * darts
@@ -29,9 +28,8 @@ The following packages need to be installed to the interpreter:
 
 ### R source files
 
-The same procedure has been applied for integrating the Prophet model.
-the interpretepath variable in the src\main\java\thesis\Models\Prophet class has to be set to the local R interpreter.
-
+the benchmark also requires the user to specify the path to a Rscript excutionable using the set_interpreterpaths() method.
+The prophet packages has to be installed to the R enviorment.
 The source files for the R scripts are provided in the directory Scripts/R
 
 
@@ -43,9 +41,11 @@ The .exe files (compiled to windows) and the source files are provided in the Sc
 
 ## How to setup and customize the benchmarking environment
 
-The src\main\java\Aplication class defines the frame for customizing, executing, and viewing the Benchmark results.
+The src\main\java\Aplication class defines the framework for customizing, executing, and viewing the Benchmark results.
 The Class follows the singleton design pattern and therefore the getInstance() method has to be called to create an instance of the benchmark.
 Helper methods are provided to customize the methods and datasets used for testing.
+
+When creating the Aplication object for the first time, the user is required to secify the python interpreter-path and the Rscript-path using the set_interpreterpath() method.
 
 To add a new time series to the testing environment the add_time_series() function has to be called.
 The add_subseries() command allows the inclusion of a 1D-subseries of a previously added time series to the testing environment.
@@ -56,7 +56,7 @@ With the add_hyperparameter() command the hyperparameter settings are specified.
 If a hyperparameter is defined in multiple ways the most restrictive hyperparameter setting is used.
 In other words, sub-series settings override time series settings which override global settings.
 
-the store() function saves all the performed changes to the setting.txt file which is parsed upon creation of the Aplication object.
+the store() function saves all the performed changes to the setting.txt file.
 
 
 ## How to execute a testing scenario
