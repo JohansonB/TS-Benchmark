@@ -173,7 +173,7 @@ public class ME extends TSModel {
 
     @Override
     public boolean legal_hyperparameters(RealMatrix train) {
-        return n<train.getColumnDimension();
+        return 2*n+1<train.getColumnDimension();
     }
 
     @Override

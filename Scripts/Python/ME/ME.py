@@ -69,10 +69,10 @@ class SVDME:
             self.n = n
             self.m = int((self.train_length - self.n)/self.n)
 
-        self.forecast = pandas.Series(dtype='float64')
+        self.forecast = pd.Series(dtype='float64')
         page_matrices = self._init_page_matrices()
         iterations = min(self.n, self.prediction_length)
-        basis = np.empty(iterations,dtype = numpy.ndarray)
+        basis = np.empty(iterations,dtype = np.ndarray)
         for i in range(len(page_matrices)):
             page_matrices[i], basis[i] = self._denoise(page_matrices[i])
 
@@ -87,7 +87,7 @@ class SVDME:
         for i in range(self.prediction_length):
             prediction = models[i%len(models)].predict(np.array(in_vec).reshape(1, -1))
 
-            in_vec = in_vec.append(pandas.Series(prediction))
+            in_vec = in_vec.append(pd.Series(prediction))
             #in_vec = project(in_vec.to_numpy(), basis[i % len(models)])
 
             #if window size is reached update the estimated X values with the real once
@@ -102,7 +102,7 @@ class SVDME:
     def _init_page_matrices(self):
         matrixDimension = self.n * self.m
         iterations = min(self.n,self.prediction_length)
-        page_matrices = np.empty(iterations,dtype = numpy.ndarray)
+        page_matrices = np.empty(iterations,dtype = np.ndarray)
         for i in range(iterations):
             offset = self.train_length-matrixDimension-iterations+i
 
