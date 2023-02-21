@@ -15,7 +15,11 @@ def rescale(df):
     minimum = np.min(df)
     df = (df - minimum)
     maximum = np.max(df)
-    df = df / maximum
+    if(maximum==0):
+        df = df
+    else:
+        df = df / maximum
+
 
     return minimum, maximum, df
 
@@ -161,16 +165,16 @@ def darts():
             args.periods_TBATS = None
 
     if args.normalize:
-        minimum, maximum, s = rescale_row_wise(np.genfromtxt(train_path, delimiter=",").T)
-        print(minimum)
-        print(maximum)
+        temp = np.genfromtxt(train_path, delimiter=",")
+        temp[np.isnan(temp)] = 0
+        minimum, maximum, s = rescale_row_wise(temp)
     else:
-        s = np.genfromtxt(train_path, delimiter=",").T
+        s = np.genfromtxt(train_path, delimiter=",")
 
 
 
 
-    df = TimeSeries.from_series(s)
+    df = TimeSeries.from_series(s.T)
 
     test = TimeSeries.from_series(np.genfromtxt(test_path, delimiter=",").T)
 
